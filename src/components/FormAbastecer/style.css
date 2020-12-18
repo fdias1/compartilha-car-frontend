@@ -16,11 +16,17 @@
 .form-abastecer>.input-container {
     margin-bottom: 20px;
 }
-.form-abastecer>.input-container>input {
+.form-abastecer>.input-container>input,.form-abastecer>.input-container>select {
     border-radius:8px;
     padding:10px;
     font-weight: bold;
     width: 80px;
+}
+.form-abastecer>.input-container>select {
+    border-radius:8px;
+    padding:10px;
+    font-weight: bold;
+    width: 200px;
 }
 
 .form-abastecer>.input-container>span {

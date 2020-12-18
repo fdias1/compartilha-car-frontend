@@ -4,6 +4,7 @@ import BotaoPadrao from '../BotaoPadrao/BotaoPadrao'
 import BotaoVoltar from '../BotaoVoltar/BotaoVoltar'
 
 const FormAbastecer = (props) => {
+    const [usuario,setUsuario] = useState(null)
     const [completar,setCompletar] = useState(false)
     const [valor,setValor] = useState(0)
 
@@ -24,13 +25,27 @@ const FormAbastecer = (props) => {
         target.value = novoValor
     }
 
+    const usuarioHandler = event => {
+        console.log(event.target.value)
+        setUsuario(event.target.value)
+    } 
     const submitHandler = () => {
-        console.log(`chama a api com os dados: {completar:${completar}, valor:${valor}}`)
+        console.log(`chama a api com os dados: {usuario:${usuario}, completar:${completar}, valor:${valor}}`)
     }
 
     return ( 
     <div className="container">
         <form action="#" className="form-abastecer">
+            <label htmlFor="usuario">Informe o usuário:</label>
+            <div className="input-container">
+                <select name="usuario" id="usuario" onChange={event => usuarioHandler(event)}>
+                    <option value="null">-- SELECIONE --</option>
+                    <option value="fabio">Fábio</option>
+                    <option value="leonardo">Leonardo</option>
+                    <option value="rita">Rita</option>
+                    <option value="davino">Davino</option>
+                </select>
+            </div>
             <label htmlFor="valor">Informe o valor abastecido:</label>
             <div className="input-container">
                 <span>R$</span>

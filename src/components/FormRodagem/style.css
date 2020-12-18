@@ -16,11 +16,19 @@
 .form-rodagem>.input-container {
     margin-bottom: 50px;
 }
+
 .form-rodagem>.input-container>input {
     border-radius:8px;
     padding:10px;
     font-weight: bold;
     width: 80px;
+}
+
+.form-rodagem>.input-container>select {
+    border-radius:8px;
+    padding:10px;
+    font-weight: bold;
+    width: 200px;
 }
 
 .form-rodagem>.input-container>span {

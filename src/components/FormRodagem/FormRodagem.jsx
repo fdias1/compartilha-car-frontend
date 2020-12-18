@@ -5,6 +5,7 @@ import BotaoVoltar from '../BotaoVoltar/BotaoVoltar'
 
 const FormRodagem = (props) => {
     const [valor,setValor] = useState(0)
+    const [usuario,setUsuario] = useState(null)
 
     const valorHandler = event => {
         const target = event.target
@@ -16,13 +17,29 @@ const FormRodagem = (props) => {
         target.value = novoValor
     }
 
+    const usuarioHandler = event => {
+        console.log(event.target.value)
+        setUsuario(event.target.value)
+    } 
+
     const submitHandler = () => {
-        console.log(`chama a api com os dados: {valor:${valor}}`)
+        console.log(`chama a api com os dados: {usuario:${usuario}, valor:${valor}}`)
+        alert('dados inseridos com sucesso')
     }
 
     return ( 
     <div className="container">
         <form action="#" className="form-rodagem">
+        <label htmlFor="usuario">Informe o usuário:</label>
+            <div className="input-container">
+                <select name="usuario" id="usuario" onChange={event => usuarioHandler(event)}>
+                    <option value="null">-- SELECIONE --</option>
+                    <option value="fabio">Fábio</option>
+                    <option value="leonardo">Leonardo</option>
+                    <option value="rita">Rita</option>
+                    <option value="davino">Davino</option>
+                </select>
+            </div>
             <label htmlFor="valor">Informe a kilometragem rodada:</label>
             <div className="input-container">
                 <input type="number" name="valor" id="valor" onChange={event => valorHandler(event)}/>
