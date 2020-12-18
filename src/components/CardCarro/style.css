@@ -1,0 +1,21 @@
+.card-carro {
+    display:flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: var(--laranja);
+    width: 320px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.apelido {
+    color:var(--branco);
+    margin-bottom: 10px;
+}
+
+.placa {
+    color:var(--azul);
+    font-weight: bold;
+}

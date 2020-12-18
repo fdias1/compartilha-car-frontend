@@ -1,0 +1,18 @@
+.menu-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap:10px;
+    justify-items: center;
+    align-items: center;
+    background-color: var(--azul);
+    padding:20px;
+}
+
+h2.menu-title {
+    display: flex;
+    color:var(--laranja);
+    padding:10px 10px 10px 20px;
+    background-color: var(--azul);
+    flex-wrap: wrap;
+    width: 330px;
+}

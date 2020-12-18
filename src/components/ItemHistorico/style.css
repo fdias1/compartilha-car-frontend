@@ -1,0 +1,25 @@
+.item-historico {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 8px;
+    width: 320px;
+    border-radius: 3px;
+    margin-bottom: 3px;
+}
+.item-historico.rodagem {
+    background-color: var(--vermelho);
+}
+
+.item-historico.abastecimento {
+    background-color: var(--verde);
+}
+
+.nome,.valor {
+    font-weight: bold;
+    color:var(--branco)
+}
+
+.data {
+    color:var(--branco)
+}

@@ -1,0 +1,22 @@
+.card-usuario {
+    display:flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: var(--laranja);
+    width: 320px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.nome {
+    color:var(--branco);
+    margin-bottom: 10px;
+}
+
+.dados {
+    color:var(--branco);
+    font-weight: bold;
+}

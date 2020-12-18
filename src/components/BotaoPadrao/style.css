@@ -1,0 +1,32 @@
+.btn-padrao {
+    text-align: center;
+    width: auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin:0;
+    border:0;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color:var(--laranja);
+    color:var(--branco);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 400ms;
+}
+
+.btn-padrao.disabled {
+    background-color:var(--cinza-escuro);
+    color:var(--cinza-claro);
+}
+
+.btn-padrao.enabled {
+    background-color:var(--verde);
+}
+
+
+.btn-padrao.label-only {
+    background-color:transparent;
+    color:var(--laranja);
+
+}

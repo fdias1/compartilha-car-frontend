@@ -1,0 +1,53 @@
+.form-rodagem {
+    background-color: var(--azul);
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.form-rodagem>label {
+    color:var(--laranja);
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.form-rodagem>.input-container {
+    margin-bottom: 50px;
+}
+.form-rodagem>.input-container>input {
+    border-radius:8px;
+    padding:10px;
+    font-weight: bold;
+    width: 80px;
+}
+
+.form-rodagem>.input-container>span {
+    color:var(--branco);
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.form-rodagem #completar {
+    margin-bottom: 50px;
+}
+
+.voltar {
+    margin-top: 50px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* #######  Retirar setinhas da lateral do input number */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
