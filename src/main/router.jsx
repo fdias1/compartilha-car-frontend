@@ -4,6 +4,7 @@ import FormAbastecer from '../components/FormAbastecer/FormAbastecer'
 import FormRodagem from '../components/FormRodagem/FormRodagem'
 import FormLogin from '../components/FormLogin/FormLogin'
 import FormRegistrar from '../components/FormRegistrar/FormRegistrar'
+import FormEditarPerfil from '../components/FormEditarPerfil/FormEditarPerfil'
 import FormRegistrarCarro from '../components/FormRegistrarCarro/FormRegistrarCarro'
 import MenuCarro from '../components/MenuCarro/MenuCarro'
 import MenuHome from '../components/MenuHome/MenuHome'
@@ -25,7 +26,7 @@ const Routes = () => {
             <Route path="/meuhistorico" exact={true} component={Historico} />
             <Route path="/meuscarros" exact={true} component={MeusCarros} />
             <Route path="/usuarios" exact={true} component={Usuarios} />
-            <Route path="/perfil" exact={true} component={FormRegistrar} />
+            <Route path="/perfil" exact={true} component={FormEditarPerfil} />
         </Switch>
      );
 }
