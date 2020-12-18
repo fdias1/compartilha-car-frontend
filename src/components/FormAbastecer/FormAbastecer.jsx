@@ -54,10 +54,10 @@ const FormAbastecer = (props) => {
             <input type="hidden" name="completar" value="false"/>
             <BotaoPadrao toggle default="disabled" label="Completei o tanque" id="completar" onClick={(event) => completarTanqueHandler(event)}/>
             <BotaoPadrao label="Inserir Abastecimento" id="submit" onClick={() => submitHandler()}/>
-            <div className="voltar">
-                <BotaoVoltar />
-            </div>
         </form>
+        <div className="voltar">
+            <BotaoVoltar />
+        </div>
     </div> 
     );
 }

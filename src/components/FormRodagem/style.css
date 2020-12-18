@@ -1,10 +1,12 @@
 .form-rodagem {
-    background-color: var(--azul);
+    background-color: var(--branco);
     display:flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
     padding: 20px;
+    border-radius:8px;
+    width: 300px;
 }
 
 .form-rodagem>label {
@@ -14,7 +16,7 @@
 }
 
 .form-rodagem>.input-container {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .form-rodagem>.input-container>input {
@@ -32,7 +34,7 @@
 }
 
 .form-rodagem>.input-container>span {
-    color:var(--branco);
+    color:var(--azul);
     margin-left: 5px;
     font-weight: bold;
 }

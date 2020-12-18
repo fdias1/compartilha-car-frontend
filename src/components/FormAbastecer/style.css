@@ -1,10 +1,12 @@
 .form-abastecer {
-    background-color: var(--azul);
+    background-color: var(--branco);
+    border-radius:8px;
     display:flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
     padding: 20px;
+    width: 300px;
 }
 
 .form-abastecer>label {
@@ -30,7 +32,7 @@
 }
 
 .form-abastecer>.input-container>span {
-    color:var(--branco);
+    color:var(--azul);
     margin-right: 5px;
     font-weight: bold;
 }
