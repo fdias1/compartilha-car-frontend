@@ -1,7 +1,8 @@
 import './style.css'
-import {useState} from 'react'
+import { useState, useEffect } from 'react'
 import BotaoPadrao from '../BotaoPadrao/BotaoPadrao'
 import BotaoVoltar from '../BotaoVoltar/BotaoVoltar'
+import { useAlert } from 'react-alert'
 
 const FormEditarPerfil = (props) => {
     const [nome,setNome] = useState('')
@@ -9,6 +10,13 @@ const FormEditarPerfil = (props) => {
     const [email,setEmail] = useState('')
     const [senha,setSenha] = useState('')
     const [senhaConfirma,setSenhaConfirma] = useState('')
+    const alert = useAlert()
+
+    useEffect(() => {
+        setNome(localStorage.getItem('nome'))
+        setSobrenome(localStorage.getItem('sobrenome'))
+        setEmail(localStorage.getItem('email'))
+    })
 
     const textFieldHandler = (event,setState) => {
         const target = event.target
@@ -25,15 +33,15 @@ const FormEditarPerfil = (props) => {
             <p className="titulo">Editar perfil:</p>
             <div className="input-container">
                 <label htmlFor="nome">Nome: </label>
-                <input type="text" name="nome" id="nome" onChange={event => textFieldHandler(event,setNome)}/>
+                <input type="text" name="nome" id="nome" onChange={event => textFieldHandler(event,setNome)} value={nome}/>
             </div>
             <div className="input-container">
                 <label htmlFor="sobrenome">Sobrenome: </label>
-                <input type="text" name="sobrenome" id="sobrenome" onChange={event => textFieldHandler(event,setSobrenome)}/>
+                <input type="text" name="sobrenome" id="sobrenome" onChange={event => textFieldHandler(event,setSobrenome)} value={sobrenome}/>
             </div>
             <div className="input-container">
                 <label htmlFor="email">Email: </label>
-                <input type="email" name="email" id="email" onChange={event => textFieldHandler(event,setEmail)}/>
+                <input type="email" name="email" id="email" onChange={event => textFieldHandler(event,setEmail)} value={email}/>
             </div>
             <div className="input-container">
                 <label htmlFor="senha">Senha: </label>

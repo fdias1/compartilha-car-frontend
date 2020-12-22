@@ -1,25 +1,35 @@
 import './style.css'
+import api from '../../services/api'
 import {useState} from 'react'
 import BotaoPadrao from '../BotaoPadrao/BotaoPadrao'
 import { useHistory } from 'react-router-dom'
+import { useAlert } from 'react-alert'
 
 const FormLogin = (props) => {
     const history=useHistory()
     const [email,setEmail] = useState('')
     const [senha,setSenha] = useState('')
+    const alert = useAlert()
 
     const textFieldHandler = (event,setState) => {
         const target = event.target
         setState(target.value)
     }
     
-    const submitHandler = () => {
-        history.push('/home')
+    const submitHandler = async () => {
         console.log(`chama a api com os dados de login: {email:${email}, senha:${senha}}`)
-    }
-
-    const registrarHandler = () => {
-        console.log('registrar')
+        const apiResponse = api.autenticar(email,senha)
+        
+        if (apiResponse.ok) {
+            localStorage.setItem('token',apiResponse.token)
+            localStorage.setItem('nome',apiResponse.nome)
+            localStorage.setItem('sobrenome',apiResponse.sobrenome)
+            localStorage.setItem('email',apiResponse.email)
+            localStorage.setItem('userId',apiResponse.userId)
+            history.push('/home')
+        } else {
+            alert.error(apiResponse.mensagem)
+        }
     }
 
     return ( 

@@ -2,6 +2,7 @@ import './style.css'
 import {useState} from 'react'
 import BotaoPadrao from '../BotaoPadrao/BotaoPadrao'
 import BotaoVoltar from '../BotaoVoltar/BotaoVoltar'
+import { useAlert } from 'react-alert'
 
 const FormRodagem = (props) => {
     const [valor,setValor] = useState(0)
@@ -18,13 +19,11 @@ const FormRodagem = (props) => {
     }
 
     const usuarioHandler = event => {
-        console.log(event.target.value)
         setUsuario(event.target.value)
     } 
 
     const submitHandler = () => {
         console.log(`chama a api com os dados: {usuario:${usuario}, valor:${valor}}`)
-        alert('dados inseridos com sucesso')
     }
 
     return ( 

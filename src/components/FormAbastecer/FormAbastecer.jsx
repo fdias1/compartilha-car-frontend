@@ -2,11 +2,13 @@ import './style.css'
 import {useState} from 'react'
 import BotaoPadrao from '../BotaoPadrao/BotaoPadrao'
 import BotaoVoltar from '../BotaoVoltar/BotaoVoltar'
+import { useAlert } from 'react-alert'
 
 const FormAbastecer = (props) => {
     const [usuario,setUsuario] = useState(null)
     const [completar,setCompletar] = useState(false)
     const [valor,setValor] = useState(0)
+    const alert = useAlert()
 
     const completarTanqueHandler = event => {
         const target = event.target
@@ -26,7 +28,6 @@ const FormAbastecer = (props) => {
     }
 
     const usuarioHandler = event => {
-        console.log(event.target.value)
         setUsuario(event.target.value)
     } 
     const submitHandler = () => {

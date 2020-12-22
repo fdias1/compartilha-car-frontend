@@ -2,6 +2,7 @@ import './style.css'
 import {useState} from 'react'
 import BotaoPadrao from '../BotaoPadrao/BotaoPadrao'
 import BotaoVoltar from '../BotaoVoltar/BotaoVoltar'
+import { useAlert } from 'react-alert'
 
 const FormRegistrar = (props) => {
     const [nome,setNome] = useState('')
@@ -9,6 +10,7 @@ const FormRegistrar = (props) => {
     const [email,setEmail] = useState('')
     const [senha,setSenha] = useState('')
     const [senhaConfirma,setSenhaConfirma] = useState('')
+    const alert = useAlert()
 
     const textFieldHandler = (event,setState) => {
         const target = event.target
