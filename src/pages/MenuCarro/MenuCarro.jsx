@@ -37,6 +37,7 @@ const MenuCarro = (props) => {
         const registros = data.retorno
         localStorage.setItem('registros',JSON.stringify(registros))
         setRegistros(localStorage.getItem('registros'))
+        console.log('mexi nos registros')
     })(),[registros,carroId])
 
     const voltarHandler = () => {
