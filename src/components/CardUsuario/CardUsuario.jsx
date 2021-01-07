@@ -7,13 +7,13 @@ const CardUsuario = (props) => {
                 {props.nome}
             </h2>
             <p className="dados">
-                Rodagem: {props.rodagem} Km
+                Rodagem: {new Intl.NumberFormat('pt-BR', { style: 'unit', unit: "kilometer",maximumFractionDigits:2 }).format(props.rodagem)}
             </p>
             <p className="dados">
-                Abastecimento: R$ {props.abastecimento} 
+                Abastecimento: {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(props.abastecimento)} 
             </p>
             <p className="dados">
-                Saldo: R$ {props.saldo}
+                Saldo: {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(props.saldo)}
             </p>
         </div>
      );

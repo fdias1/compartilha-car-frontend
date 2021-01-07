@@ -1,7 +1,8 @@
 import './style.css'
+import api from '../../services/webApi'
 import {useState} from 'react'
-import BotaoPadrao from '../BotaoPadrao/BotaoPadrao'
-import BotaoVoltar from '../BotaoVoltar/BotaoVoltar'
+import BotaoPadrao from '../../components/BotaoPadrao/BotaoPadrao'
+import BotaoVoltar from '../../components/BotaoVoltar/BotaoVoltar'
 import { useHistory } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 
@@ -25,9 +26,22 @@ const FormVincularCarro = (props) => {
         regExpHandler(event,regExp,setState,state)
     }
     
-    const submitHandler = () => {
-        history.goBack()
-        console.log(`chama a api com os dados do carro: {placa:${placa}, pin:${pin}}`)
+    const submitHandler = async () => {
+        try {
+            if (!placa || !pin) {
+                alert.error('Todos os campos são obrigatórios')
+                return
+            }
+            
+            const response = await api.get(`carros/util/atrelar?placa=${placa}&usuario=${localStorage.getItem('id')}&pin=${pin}`,{headers:{token:localStorage.getItem('token')}})
+            const data = response.data
+            if (data.ok) {
+                alert.success('Carro Vinculado com sucesso')
+                history.push('/home')
+            }
+        } catch (err) {
+            alert.error('Algo deu errado, tente novamente mais tarde')
+        }
     }
 
     return ( 

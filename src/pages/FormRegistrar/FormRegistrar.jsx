@@ -1,10 +1,13 @@
 import './style.css'
+import api from '../../services/webApi'
 import {useState} from 'react'
-import BotaoPadrao from '../BotaoPadrao/BotaoPadrao'
-import BotaoVoltar from '../BotaoVoltar/BotaoVoltar'
+import BotaoPadrao from '../../components/BotaoPadrao/BotaoPadrao'
+import BotaoVoltar from '../../components/BotaoVoltar/BotaoVoltar'
 import { useAlert } from 'react-alert'
+import { useHistory } from 'react-router-dom'
 
 const FormRegistrar = (props) => {
+    const history = useHistory()
     const [nome,setNome] = useState('')
     const [sobrenome,setSobrenome] = useState('')
     const [email,setEmail] = useState('')
@@ -17,8 +20,27 @@ const FormRegistrar = (props) => {
         setState(target.value)
     }
     
-    const submitHandler = () => {
-        console.log(`chama a api com os dados de registro: {nome:${nome}, sobrenome:${sobrenome} email:${email}, senha:${senha}, senhaConfirma:${senhaConfirma}}`)
+    const submitHandler = async () => {
+        try {
+            if (!nome || !sobrenome || !email || !senha) {
+                alert.error('Todos os campos são obrigatórios')
+                return
+            }
+            if (senha !== senhaConfirma) {
+                alert.error('As senhas não conferem')
+                return
+            }
+
+            const response = await api.post('usuarios',{nome,sobrenome,email,senha})
+            const data = response.data
+            console.log(response)
+            if (data.ok) {
+                alert.success('Usuario cadastrado com sucesso')
+                history.push('/login')
+            }
+        } catch (err) {
+            alert.error('Algo deu errado, tente novamente mais tarde')
+        }
     }
 
     return ( 

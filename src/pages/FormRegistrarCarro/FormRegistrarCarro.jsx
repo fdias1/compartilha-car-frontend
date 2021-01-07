@@ -1,10 +1,13 @@
 import './style.css'
-import {useState} from 'react'
-import BotaoPadrao from '../BotaoPadrao/BotaoPadrao'
-import BotaoVoltar from '../BotaoVoltar/BotaoVoltar'
+import api from '../../services/webApi'
+import { useHistory } from 'react-router-dom'
+import { useState } from 'react'
+import BotaoPadrao from '../../components/BotaoPadrao/BotaoPadrao'
+import BotaoVoltar from '../../components/BotaoVoltar/BotaoVoltar'
 import { useAlert } from 'react-alert'
 
 const FormRegistrarCarro = (props) => {
+    const history = useHistory()
     const [apelido,setApelido] = useState('')
     const [placa,setPlaca] = useState('')
     const [pin,setPin] = useState('')
@@ -16,8 +19,27 @@ const FormRegistrarCarro = (props) => {
         setState(target.value)
     }
     
-    const submitHandler = () => {
-        console.log(`chama a api com os dados de registro: {apelido:${apelido}, placa:${placa} pin:${pin}, pinConfirma:${pinConfirma}}`)
+    const submitHandler = async () => {
+        try {
+            if (!apelido || !placa || !pin) {
+                alert.error('Todos os campos são obrigatórios')
+                return
+            }
+            if (pin !== pinConfirma) {
+                alert.error('Os PINs não conferem')
+                return
+            }
+
+            const response = await api.post('carros',{apelido,placa,pin,usuarios:[localStorage.getItem('id')]},{headers:{token:localStorage.getItem('token')}})
+            const data = response.data
+            console.log(response)
+            if (data.ok) {
+                alert.success('Carro cadastrado com sucesso')
+                history.push('/home')
+            }
+        } catch (err) {
+            alert.error('Algo deu errado, tente novamente mais tarde')
+        }
     }
 
     const regExpHandler = (event,regExp,setState,state) => {

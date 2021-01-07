@@ -1,14 +1,18 @@
 import './style.css'
-import {useState} from 'react'
-import BotaoPadrao from '../BotaoPadrao/BotaoPadrao'
-import BotaoVoltar from '../BotaoVoltar/BotaoVoltar'
+import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import BotaoPadrao from '../../components/BotaoPadrao/BotaoPadrao'
+import BotaoVoltar from '../../components/BotaoVoltar/BotaoVoltar'
 import { useAlert } from 'react-alert'
+import api from '../../services/webApi'
 
 const FormAbastecer = (props) => {
+    const usuarios = JSON.parse(localStorage.getItem('usuarios'))
     const [usuario,setUsuario] = useState(null)
     const [completar,setCompletar] = useState(false)
     const [valor,setValor] = useState(0)
     const alert = useAlert()
+    const history = useHistory()
 
     const completarTanqueHandler = event => {
         const target = event.target
@@ -30,8 +34,40 @@ const FormAbastecer = (props) => {
     const usuarioHandler = event => {
         setUsuario(event.target.value)
     } 
-    const submitHandler = () => {
-        console.log(`chama a api com os dados: {usuario:${usuario}, completar:${completar}, valor:${valor}}`)
+    const submitHandler = async () => {
+        try {
+            console.log(valor,usuario,!!usuario)
+            if (!usuario || !valor ) {
+                alert.error('preencha todos os campos obrigatórios')
+                return
+            }
+            const object = {
+                usuario,
+                valor,
+                tipo:'gas',
+                autor:localStorage.getItem('id'),
+                carro:localStorage.getItem('carroId'),
+            }
+            console.log(object)
+            const response = await api.post('/registros',object,{headers:{token:localStorage.getItem('token')}},{headers:{token:localStorage.getItem('token')}})
+            if (response.data.ok && !completar) {
+                alert.success('Dados inseridos com sucesso')
+            } else if (completar && response.data.ok) {
+                const response = await api.post('/registros/balance',{
+                    usuario,
+                    carro:localStorage.getItem('carroId')
+                })
+                if (response.data.ok) {
+                    alert.success('Dados inseridos com sucesso, saldo calculado e contabilizado')
+                } else {
+                    throw response.data.mensagem
+                }
+            }
+            history.push('/carro')
+            
+        } catch(err) {
+            alert.error('Algo deu errado, tente novamente mais tarde')
+        }
     }
 
     return ( 
@@ -40,11 +76,8 @@ const FormAbastecer = (props) => {
             <label htmlFor="usuario">Informe o usuário:</label>
             <div className="input-container">
                 <select name="usuario" id="usuario" onChange={event => usuarioHandler(event)}>
-                    <option value="null">-- SELECIONE --</option>
-                    <option value="fabio">Fábio</option>
-                    <option value="leonardo">Leonardo</option>
-                    <option value="rita">Rita</option>
-                    <option value="davino">Davino</option>
+                    <option value={null}>-- SELECIONE --</option>
+                    {usuarios.map(usuario => <option value={usuario.id} key={usuario.id}>{usuario.nome}</option> )}
                 </select>
             </div>
             <label htmlFor="valor">Informe o valor abastecido:</label>

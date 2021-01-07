@@ -1,17 +1,17 @@
 import { Route, Switch, Redirect} from 'react-router-dom'
 
-import FormAbastecer from '../components/FormAbastecer/FormAbastecer'
-import FormRodagem from '../components/FormRodagem/FormRodagem'
-import FormLogin from '../components/FormLogin/FormLogin'
-import FormRegistrar from '../components/FormRegistrar/FormRegistrar'
-import FormEditarPerfil from '../components/FormEditarPerfil/FormEditarPerfil'
-import FormRegistrarCarro from '../components/FormRegistrarCarro/FormRegistrarCarro'
-import FormVincularCarro from '../components/FormVincularCarro/FormVincularCarro'
-import MenuCarro from '../components/MenuCarro/MenuCarro'
-import MenuHome from '../components/MenuHome/MenuHome'
-import Historico from '../components/Historico/Historico'
-import MeusCarros from '../components/MeusCarros/MeusCarros'
-import Usuarios from '../components/Usuarios/Usuarios'
+import FormAbastecer from '../pages/FormAbastecer/FormAbastecer'
+import FormRodagem from '../pages/FormRodagem/FormRodagem'
+import FormLogin from '../pages/FormLogin/FormLogin'
+import FormRegistrar from '../pages/FormRegistrar/FormRegistrar'
+import FormEditarPerfil from '../pages/FormEditarPerfil/FormEditarPerfil'
+import FormRegistrarCarro from '../pages/FormRegistrarCarro/FormRegistrarCarro'
+import FormVincularCarro from '../pages/FormVincularCarro/FormVincularCarro'
+import MenuCarro from '../pages/MenuCarro/MenuCarro'
+import MenuHome from '../pages/MenuHome/MenuHome'
+import Historico from '../pages/Historico/Historico'
+import MeusCarros from '../pages/MeusCarros/MeusCarros'
+import Usuarios from '../pages/Usuarios/Usuarios'
 
 const Routes = () => {
     
@@ -25,7 +25,6 @@ const Routes = () => {
             <Route path="/registrarcarro" exact={true} component={FormRegistrarCarro} />
             <Route path="/carro" exact={true} component={MenuCarro} />
             <Route path="/historico" exact={true} component={Historico} />
-            <Route path="/meuhistorico" exact={true} component={Historico} />
             <Route path="/meuscarros" exact={true} component={MeusCarros} />
             <Route path="/usuarios" exact={true} component={Usuarios} />
             <Route path="/perfil" exact={true} component={FormEditarPerfil} />

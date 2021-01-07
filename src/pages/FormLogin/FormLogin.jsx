@@ -1,7 +1,7 @@
 import './style.css'
-import api from '../../services/api'
+import api from '../../services/webApi'
 import {useState} from 'react'
-import BotaoPadrao from '../BotaoPadrao/BotaoPadrao'
+import BotaoPadrao from '../../components/BotaoPadrao/BotaoPadrao'
 import { useHistory } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 
@@ -17,18 +17,23 @@ const FormLogin = (props) => {
     }
     
     const submitHandler = async () => {
-        console.log(`chama a api com os dados de login: {email:${email}, senha:${senha}}`)
-        const apiResponse = api.autenticar(email,senha)
-        
-        if (apiResponse.ok) {
-            localStorage.setItem('token',apiResponse.token)
-            localStorage.setItem('nome',apiResponse.nome)
-            localStorage.setItem('sobrenome',apiResponse.sobrenome)
-            localStorage.setItem('email',apiResponse.email)
-            localStorage.setItem('userId',apiResponse.userId)
-            history.push('/home')
-        } else {
-            alert.error(apiResponse.mensagem)
+        try {
+            const response = await api.post('usuarios/login',{email,senha})
+            const data = response.data
+            if (data.ok) {
+                localStorage.setItem('nome',data.retorno.nome)
+                localStorage.setItem('sobrenome',data.retorno.sobrenome)
+                localStorage.setItem('email',data.retorno.email)
+                localStorage.setItem('id',data.retorno.id)
+                localStorage.setItem('token',data.retorno.token)
+                if(localStorage.getItem('token')) {
+                    history.push('/home')
+                }
+            } else {
+                throw data.mensagem
+            }
+        } catch (err) {
+            alert.error('Algo deu errado, tente novamente mais tarde')
         }
     }
 
