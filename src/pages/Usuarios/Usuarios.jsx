@@ -11,8 +11,8 @@ const Usuarios = (props) => {
         const listaUsuarios = []
         usuarios.forEach(usuario => {
             console.log(usuario,registros)
-            const km = registros.filter( registro => registro.tipo === 'km' && registro.usuario === usuario.id).reduce((sum,registro) => sum + registro.valor,0)
-            const gas = registros.filter( registro => registro.tipo === 'gas' && registro.usuario === usuario.id).reduce((sum,registro) => sum + registro.valor,0)
+            const km = registros.filter( registro => registro.tipo === 'km' && registro.usuario === usuario.id && registro.ativo).reduce((sum,registro) => sum + registro.valor,0)
+            const gas = registros.filter( registro => registro.tipo === 'gas' && registro.usuario === usuario.id && registro.ativo).reduce((sum,registro) => sum + registro.valor,0)
             const balance = registros.filter( registro => registro.tipo === 'balance' && registro.usuario === usuario.id).reduce((sum,registro) => sum + registro.valor,0)
             const data = {nome:usuario.nome,km,gas,balance}
             listaUsuarios.push(data)

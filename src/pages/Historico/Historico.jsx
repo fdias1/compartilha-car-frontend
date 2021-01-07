@@ -17,8 +17,10 @@ const Historico = (props) => {
         const cardRegistros = []
 
         registros.forEach(registro => {
-            const nome = usuarios.filter(usuario => usuario.id === registro.usuario).reduce((sum,usuario) => usuario.nome,'')
-            cardRegistros.push({id:registro.usuario,usuario:nome,valor:registro.valor,tipo:conversor[registro.tipo],data:registro.data})
+            if (registro.ativo === true && registro.tipo !== 'balance') {
+                const nome = usuarios.filter(usuario => usuario.id === registro.usuario).reduce((sum,usuario) => usuario.nome,'')
+                cardRegistros.push({id:registro.usuario,usuario:nome,valor:registro.valor,tipo:conversor[registro.tipo],data:registro.data})
+            }
         })
         setCardRegistros(cardRegistros)
     },[registros,usuarios])

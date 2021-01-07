@@ -49,14 +49,15 @@ const FormAbastecer = (props) => {
                 carro:localStorage.getItem('carroId'),
             }
             console.log(object)
-            const response = await api.post('/registros',object,{headers:{token:localStorage.getItem('token')}},{headers:{token:localStorage.getItem('token')}})
+            const response = await api.post('/registros',object,{headers:{token:localStorage.getItem('token')}})
             if (response.data.ok && !completar) {
                 alert.success('Dados inseridos com sucesso')
             } else if (completar && response.data.ok) {
                 const response = await api.post('/registros/balance',{
                     usuario,
                     carro:localStorage.getItem('carroId')
-                })
+                },{headers:{token:localStorage.getItem('token')}})
+                
                 if (response.data.ok) {
                     alert.success('Dados inseridos com sucesso, saldo calculado e contabilizado')
                 } else {
